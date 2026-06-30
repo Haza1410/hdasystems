@@ -1,0 +1,186 @@
+// ─────────────────────────────────────────────────────────────
+// Single source of truth for brand + content.
+// Premium positioning: websites + a lead system for local
+// businesses. Flat £299/mo. Built to feel world-class.
+// ─────────────────────────────────────────────────────────────
+
+export const BRAND = "PARALLAX";
+export const BRAND_TAGLINE = "Websites engineered to win customers";
+// GoHighLevel booking widget — used for every "book a call" CTA.
+export const CAL_URL =
+  "https://api.leadconnectorhq.com/widget/booking/GDQp7qTfhXknyIgF1MrZ";
+export const EMAIL = "hello@parallax.studio";
+
+export const nav = [
+  { label: "Work", href: "#work" },
+  { label: "Capabilities", href: "#capabilities" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Demo", href: "#demo" },
+];
+
+export const hero = {
+  eyebrow: "Websites + leads · for your business",
+  headline: ["Websites that", "win customers."],
+  sub: "We design, build and run high-performing websites — and the lead engine behind them.",
+  primaryCta: { label: "book a call", href: CAL_URL },
+  secondaryCta: { label: "our services", href: "#capabilities" },
+};
+
+type Stat = {
+  value?: number;
+  prefix?: string;
+  suffix?: string;
+  display?: string;
+  label: string;
+};
+
+export const stats: Stat[] = [
+  { display: "24/7", label: "lead capture" },
+  { value: 7, prefix: "", suffix: " days", label: "from kick-off to live" },
+  { value: 299, prefix: "£", suffix: "", label: "per month, everything in" },
+  { value: 0, label: "missed leads with automated follow-up" },
+];
+
+export const marquee = [
+  "PLUMBERS",
+  "DENTISTS",
+  "SALONS",
+  "GYMS",
+  "ROOFERS",
+  "CAFÉS",
+  "BUILDERS",
+  "VETS",
+  "ELECTRICIANS",
+  "GARAGES",
+];
+
+export const caseStudies = [
+  {
+    title: "Tillet & Saunders",
+    sector: "Builders & renovations",
+    blurb: "A premium, trust-first site with quote capture for a 25-year London firm.",
+    metric: { value: 312, prefix: "+", suffix: "%", label: "quote requests" },
+    tags: ["Web design", "Lead capture", "SEO"],
+    accent: "#2ee6c0",
+    real: true,
+  },
+  {
+    title: "UniLingo",
+    sector: "Language-learning app",
+    blurb: "A high-converting launch site funnelling students to the iOS & Android apps.",
+    metric: { value: 48, prefix: "", suffix: "k", label: "app installs driven" },
+    tags: ["Launch site", "Motion", "CRO"],
+    accent: "#22d3ee",
+    real: true,
+  },
+  {
+    title: "Apex Plumbing",
+    sector: "Trades · lead generation",
+    blurb: "Missed-call text-back and instant quote forms that never let an enquiry slip.",
+    metric: { value: 2.4, prefix: "", suffix: "x", label: "booked jobs" },
+    tags: ["Website", "Automation", "Reviews"],
+    accent: "#8b7bff",
+    real: false,
+  },
+];
+
+export const transform = {
+  eyebrow: "Before / After",
+  heading: "From forgettable to unforgettable.",
+  sub: "Drag to see the difference a proper build makes.",
+  before: {
+    label: "Before",
+    name: "Old site",
+    points: ["Slow & dated", "No way to capture leads", "Invisible on Google"],
+  },
+  after: {
+    label: "After",
+    name: "PARALLAX build",
+    points: ["Fast & immersive", "Lead engine built in", "Ranking & converting"],
+  },
+};
+
+export const capabilities = {
+  eyebrow: "What's in the box",
+  heading: ["A website is just", "the start."],
+  sub: "Your £299/month plan is a complete customer-getting system — the site is one piece of it. Here's everything working for you behind the scenes.",
+  items: [
+    {
+      title: "Custom website",
+      desc: "Designed and built for your brand. Fast, accessible, mobile-first.",
+      icon: "layout",
+    },
+    {
+      title: "Lead engine",
+      desc: "Quote, contact & booking forms with instant email + text follow-up.",
+      icon: "magnet",
+    },
+    {
+      title: "Missed-call text-back",
+      desc: "Every missed call gets an automatic text, so no job slips away.",
+      icon: "phone",
+    },
+    {
+      title: "Review engine",
+      desc: "A funnel that turns happy customers into 5-star Google reviews.",
+      icon: "star",
+    },
+    {
+      title: "SEO & AI SEO",
+      desc: "Found by the right local customers, however they search.",
+      icon: "search",
+    },
+    {
+      title: "Managed monthly",
+      desc: "Hosting, updates and optimisation — handled, every month.",
+      icon: "shield",
+    },
+  ],
+};
+
+export const calculator = {
+  eyebrow: "Build your plan",
+  heading: "Pay for exactly what you need.",
+  base: { label: "Website Growth Plan", price: 299 },
+  // type: "mo" monthly, "oneoff" one-time. Set pricing.
+  addons: [
+    { id: "chatbot", label: "AI FAQ assistant / chatbot", price: 40, type: "mo" },
+    { id: "gbp", label: "Google Business Profile optimisation", price: 150, type: "oneoff" },
+    { id: "lsa", label: "Google Local Service Ads setup", price: 500, type: "oneoff" },
+    { id: "reactivation", label: "Past-customer reactivation campaign", price: 250, type: "oneoff" },
+  ],
+  note: "Set pricing — £299/month plus any add-ons you choose. 30 day cancellation.",
+  cta: { label: "Book a free call", href: CAL_URL },
+};
+
+export const chatbot = {
+  eyebrow: "Live demo",
+  heading: "Meet your 24/7 assistant.",
+  sub: "This is the kind of AI assistant we can put on your site. Ask it anything.",
+  greeting: "Hi! I'm the PARALLAX assistant. Ask me about pricing, timelines or what's included.",
+  suggestions: [
+    {
+      q: "How much does it cost?",
+      a: "It's a set fee of £299/month — website, hosting, lead system, reviews and SEO all included. Optional add-ons available, with 30 day cancellation.",
+    },
+    {
+      q: "How fast can I go live?",
+      a: "Most sites launch within 7 days of our kick-off call, once we've got your content and branding.",
+    },
+    {
+      q: "Do I own my website?",
+      a: "Yes — the website is yours. If you ever leave, we hand it straight over. No hostages.",
+    },
+    {
+      q: "What do I get for £299?",
+      a: "A custom site, hosting & maintenance, lead-capture forms with auto follow-up, missed-call text-back, a 5-star review engine and ongoing SEO.",
+    },
+  ],
+};
+
+export const cta = {
+  eyebrow: "Let's build",
+  heading: ["Want a website", "that pulls its weight?"],
+  sub: "Book a free 30-minute call. No pressure, no jargon.",
+  primary: { label: "Book a free call", href: CAL_URL },
+};

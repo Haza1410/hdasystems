@@ -1,0 +1,88 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { hero } from "@/lib/site";
+
+const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false });
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+export default function Hero() {
+  return (
+    <section
+      id="top"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-28 text-center"
+    >
+      {/* 3D objects behind the copy */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="mask-fade-edges absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-90 md:h-[110%] md:w-[80%]">
+          <Scene3D />
+        </div>
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center">
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="chip eyebrow !text-[13px] !tracking-[0.22em] px-6 py-2.5 md:!text-sm"
+        >
+          <span className="h-2 w-2 rounded-full bg-accent-teal" />
+          {hero.eyebrow}
+        </motion.span>
+
+        <h1 className="display mt-7 text-[clamp(2.8rem,8vw,6.5rem)] leading-[0.95]">
+          {hero.headline.map((line, i) => (
+            <span key={i} className="block overflow-hidden">
+              <motion.span
+                initial={{ y: "110%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.95, delay: 0.1 + i * 0.12, ease }}
+                className={`inline-block ${i === 1 ? "text-gradient" : "text-ink"}`}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease }}
+          className="mt-7 max-w-xl text-balance text-lg text-ink-muted"
+        >
+          {hero.sub}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.62, ease }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        >
+          <a
+            href={hero.primaryCta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary !px-10 !py-4 !text-lg md:!px-12"
+          >
+            {hero.primaryCta.label}
+            <span aria-hidden>↗</span>
+          </a>
+          <a
+            href={hero.secondaryCta.href}
+            className="btn-ghost !px-10 !py-4 !text-lg md:!px-12"
+          >
+            {hero.secondaryCta.label}
+          </a>
+        </motion.div>
+      </div>
+
+      <div className="absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 md:block">
+        <span className="block h-12 w-px animate-pulse bg-gradient-to-b from-accent-teal to-transparent" />
+      </div>
+    </section>
+  );
+}
