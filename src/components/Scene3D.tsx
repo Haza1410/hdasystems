@@ -7,9 +7,40 @@ import {
   MeshDistortMaterial,
   TorusKnot,
   Environment,
+  useProgress,
 } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
+
+const SCENE_READY_EVENT = "parallax:scene-ready";
+
+// Tells the preloader the scene is fully rendered (incl. environment),
+// so it can fade out without the orb popping in afterwards.
+function SceneReady() {
+  const { active, progress } = useProgress();
+  const fired = useRef(false);
+
+  const fire = () => {
+    if (fired.current) return;
+    fired.current = true;
+    window.dispatchEvent(new Event(SCENE_READY_EVENT));
+  };
+
+  useEffect(() => {
+    if (progress >= 100 && !active) {
+      const id = requestAnimationFrame(() => requestAnimationFrame(fire));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [active, progress]);
+
+  // Floor: never make the loader wait longer than this once mounted.
+  useEffect(() => {
+    const t = setTimeout(fire, 2500);
+    return () => clearTimeout(t);
+  }, []);
+
+  return null;
+}
 
 function MainBlob() {
   return (
@@ -115,6 +146,7 @@ export default function Scene3D() {
           <Pills />
         </Rig>
         <Environment preset="night" />
+        <SceneReady />
       </Suspense>
     </Canvas>
   );

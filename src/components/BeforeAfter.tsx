@@ -4,6 +4,9 @@ import { useCallback, useRef, useState } from "react";
 import { transform } from "@/lib/site";
 import Reveal from "./Reveal";
 
+const serif = { fontFamily: '"Times New Roman", Times, serif' } as const;
+const linkBlue = "#1a4ca3";
+
 function Check({ ok }: { ok: boolean }) {
   return (
     <span
@@ -18,15 +21,16 @@ function Check({ ok }: { ok: boolean }) {
 
 export default function BeforeAfter() {
   const [pct, setPct] = useState(52);
+  const [dragging, setDragging] = useState(false);
+  const draggingRef = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
-  const dragging = useRef(false);
 
   const setFromClientX = useCallback((clientX: number) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const p = ((clientX - r.left) / r.width) * 100;
-    setPct(Math.min(96, Math.max(4, p)));
+    setPct(Math.min(94, Math.max(6, p)));
   }, []);
 
   return (
@@ -39,55 +43,75 @@ export default function BeforeAfter() {
               From forgettable to{" "}
               <span className="text-gradient">unforgettable.</span>
             </h2>
-            <p className="mt-4 text-ink-muted">{transform.sub}</p>
+            <p className="mt-4 text-ink-muted">
+              Drag the handle to compare — and hover either side to scroll it.
+            </p>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
           <div
             ref={ref}
-            onPointerDown={(e) => {
-              dragging.current = true;
-              setFromClientX(e.clientX);
-            }}
-            onPointerMove={(e) => dragging.current && setFromClientX(e.clientX)}
-            onPointerUp={() => (dragging.current = false)}
-            onPointerLeave={() => (dragging.current = false)}
-            className="glass relative aspect-[16/10] cursor-ew-resize select-none overflow-hidden rounded-3xl md:aspect-[2/1]"
+            className="glass relative aspect-[16/10] select-none overflow-hidden rounded-3xl md:aspect-[2/1]"
           >
-            {/* AFTER (full, underneath) */}
-            <div className="absolute inset-0">
-              <Panel variant="after" />
+            {/* AFTER — real live site, scrollable on hover (underneath) */}
+            <div className="absolute inset-0 bg-white">
+              <iframe
+                src={transform.afterUrl}
+                title="Built by PARALLAX — Stoneford Kitchens & Bathrooms"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                className="h-full w-full"
+                style={{ border: 0, pointerEvents: dragging ? "none" : "auto" }}
+              />
             </div>
 
-            {/* BEFORE (clipped on top) */}
+            {/* BEFORE — dated page, scrollable on hover (clipped on top) */}
             <div
               className="absolute inset-0 overflow-hidden"
               style={{ width: `${pct}%` }}
             >
               <div
-                className="h-full"
-                style={{ width: ref.current?.offsetWidth ?? "100%" }}
+                className="h-full w-full overflow-y-auto overscroll-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                style={{ pointerEvents: dragging ? "none" : "auto" }}
               >
-                <Panel variant="before" />
+                <LegacySite />
               </div>
             </div>
 
-            {/* handle */}
+            {/* drag handle — pointer-capture so it works over the live iframe */}
             <div
-              className="absolute inset-y-0 z-20 flex items-center"
+              onPointerDown={(e) => {
+                e.currentTarget.setPointerCapture(e.pointerId);
+                draggingRef.current = true;
+                setDragging(true);
+                setFromClientX(e.clientX);
+              }}
+              onPointerMove={(e) => {
+                if (draggingRef.current) setFromClientX(e.clientX);
+              }}
+              onPointerUp={(e) => {
+                draggingRef.current = false;
+                setDragging(false);
+                e.currentTarget.releasePointerCapture(e.pointerId);
+              }}
+              onPointerCancel={() => {
+                draggingRef.current = false;
+                setDragging(false);
+              }}
+              className="absolute inset-y-0 z-20 flex w-6 cursor-ew-resize touch-none items-center justify-center"
               style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
             >
-              <div className="h-full w-px bg-white/40" />
-              <div className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-ink backdrop-blur-md">
+              <div className="pointer-events-none h-full w-px bg-white/40" />
+              <div className="pointer-events-none absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/15 text-ink shadow-lg backdrop-blur-md">
                 ⇄
               </div>
             </div>
 
-            <span className="absolute left-4 top-4 z-10 rounded-full border border-white/10 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-ink-muted backdrop-blur">
+            <span className="pointer-events-none absolute left-4 top-4 z-10 rounded-full border border-white/10 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-ink-muted backdrop-blur">
               {transform.before.label}
             </span>
-            <span className="absolute right-4 top-4 z-10 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-accent-teal backdrop-blur">
+            <span className="pointer-events-none absolute right-4 top-4 z-10 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-accent-teal backdrop-blur">
               {transform.after.label}
             </span>
           </div>
@@ -101,7 +125,10 @@ export default function BeforeAfter() {
               </div>
               <ul className="space-y-2.5">
                 {transform.before.points.map((p) => (
-                  <li key={p} className="flex items-center gap-3 text-sm text-ink-muted">
+                  <li
+                    key={p}
+                    className="flex items-center gap-3 text-sm text-ink-muted"
+                  >
                     <Check ok={false} />
                     {p}
                   </li>
@@ -128,60 +155,138 @@ export default function BeforeAfter() {
   );
 }
 
-function Panel({ variant }: { variant: "before" | "after" }) {
-  if (variant === "before") {
-    return (
-      <div className="flex h-full w-full flex-col bg-[#e9e7e1] text-[#2a2a28]">
-        <div className="flex items-center justify-between border-b border-black/10 px-5 py-3">
-          <span className="font-serif text-lg font-bold">Joe&apos;s Plumbing</span>
-          <span className="text-xs text-black/50">Home · About · Contact</span>
-        </div>
-        <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6 text-center">
-          <span className="font-serif text-xl underline">Welcome to our website!!!</span>
-          <span className="max-w-sm text-xs text-black/60">
-            We do plumbing in the local area. Please call us on the number below.
-            Best plumber. Est. 2004.
-          </span>
-          <span className="mt-2 rounded border border-black/30 bg-[#d8d5cc] px-3 py-1 text-xs">
-            Contact us
-          </span>
-          <div className="mt-2 h-16 w-24 rounded bg-black/10" />
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className="relative flex h-full w-full flex-col overflow-hidden bg-[#070809]">
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(110% 90% at 80% 0%, rgba(46,230,192,0.28), transparent 55%), radial-gradient(90% 90% at 0% 100%, rgba(139,123,255,0.22), transparent 55%)",
-        }}
+// Genuinely nice interior photos — the bad site, good photography.
+const img = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=600&q=80`;
+const heroPhoto = img("1556912167-f556f1f39fdf");
+const galleryPhotos = [
+  img("1604709177225-055f99402ea3"),
+  img("1584622650111-993a426fbf0a"),
+  img("1581858726788-75bc0f6a952d"),
+  img("1600489000022-c2086d79f9d4"),
+  img("1565183997392-2f6f122e5912"),
+  img("1620626011761-996317b8d101"),
+];
+
+/* A dated, bare "default HTML" builder site — calm neutral palette, but
+   amateur and forgettable. Long enough to scroll, centred on its side. */
+function LegacySite() {
+  const Link = ({ children }: { children: React.ReactNode }) => (
+    <span className="underline" style={{ color: linkBlue }}>
+      {children}
+    </span>
+  );
+  const Photo = ({ src, h = "h-24" }: { src: string; h?: string }) => (
+    <div className={`${h} overflow-hidden border border-[#999] bg-[#e9e9e9]`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt="Previous work"
+        loading="lazy"
+        className="h-full w-full object-cover"
       />
-      <div className="relative flex items-center justify-between px-6 py-4">
-        <span className="text-sm font-semibold tracking-tight text-white">Joe&apos;s Plumbing</span>
-        <span className="rounded-full bg-accent-teal px-3 py-1 text-[11px] font-semibold text-[#04110d]">
-          Book online
-        </span>
-      </div>
-      <div className="relative flex flex-1 flex-col justify-center px-6 md:px-10">
-        <span className="font-sans text-3xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl">
-          Emergency plumber,
-          <br />
-          <span className="text-gradient">on the way in 30.</span>
-        </span>
-        <span className="mt-3 max-w-xs text-xs text-white/60 md:text-sm">
-          Trusted by 1,200+ local homes. Book online in 60 seconds.
-        </span>
-        <div className="mt-4 flex gap-2">
-          <span className="rounded-full bg-accent-teal px-4 py-1.5 text-xs font-semibold text-[#04110d]">
-            Get a quote
-          </span>
-          <span className="rounded-full border border-white/20 px-4 py-1.5 text-xs text-white">
-            Call now
-          </span>
+    </div>
+  );
+
+  return (
+    <div className="min-h-full w-full bg-white text-black" style={serif}>
+      <div className="mx-auto max-w-[600px] px-6 py-5 text-center">
+        <h1 className="text-2xl font-bold leading-tight md:text-3xl">
+          Dave&apos;s Kitchens &amp; Building
+        </h1>
+        <p className="mt-0.5 text-[12px] text-black/70 md:text-sm">
+          Kitchens, Bathrooms &amp; Extensions — Durham &amp; the North East
+        </p>
+
+        <hr className="my-3 border-black/25" />
+        <p className="text-[12px] md:text-sm">
+          <Link>Home</Link>
+          <span className="text-black/50"> | </span>
+          <Link>About Us</Link>
+          <span className="text-black/50"> | </span>
+          <Link>Services</Link>
+          <span className="text-black/50"> | </span>
+          <Link>Gallery</Link>
+          <span className="text-black/50"> | </span>
+          <Link>Contact</Link>
+        </p>
+        <hr className="my-3 border-black/25" />
+
+        <h2 className="text-lg font-bold md:text-xl">Welcome to our website</h2>
+        <p className="mt-2 text-[12px] leading-relaxed md:text-sm">
+          We are a family-run building firm with over 20 years of experience
+          fitting kitchens and bathrooms across the local area. We offer a
+          friendly, reliable service and free, no-obligation quotes.
+        </p>
+
+        <div className="mt-3 flex flex-col items-center gap-3">
+          <div className="w-full max-w-[320px]">
+            <Photo src={heroPhoto} h="h-36" />
+          </div>
+          <ul className="inline-block list-disc pl-5 text-left text-[12px] leading-relaxed md:text-sm">
+            <li>Free quotes</li>
+            <li>Fully insured</li>
+            <li>20+ years experience</li>
+            <li>Local, reliable team</li>
+          </ul>
         </div>
+
+        <hr className="my-4 border-black/25" />
+        <h2 className="text-lg font-bold md:text-xl">Our Services</h2>
+        <div className="mt-2 space-y-2.5 text-[12px] leading-relaxed md:text-sm">
+          <p>
+            <b>Kitchens.</b> Full kitchen fitting and refurbishment, including
+            units, worktops, tiling and appliances. <Link>Read more</Link>
+          </p>
+          <p>
+            <b>Bathrooms.</b> Bathroom installations, showers, tiling and
+            plumbing. <Link>Read more</Link>
+          </p>
+          <p>
+            <b>Extensions.</b> Single and double-storey extensions and
+            knock-throughs. <Link>Read more</Link>
+          </p>
+          <p>
+            <b>General building.</b> Brickwork, plastering, groundwork and
+            general repairs. <Link>Read more</Link>
+          </p>
+        </div>
+
+        <hr className="my-4 border-black/25" />
+        <h2 className="text-lg font-bold md:text-xl">Gallery</h2>
+        <div className="mt-2 grid grid-cols-3 gap-3">
+          {galleryPhotos.map((src, i) => (
+            <Photo key={i} src={src} h="h-20" />
+          ))}
+        </div>
+        <p className="mt-2 text-[12px] md:text-sm">
+          <Link>See more photos &raquo;</Link>
+        </p>
+
+        <hr className="my-4 border-black/25" />
+        <h2 className="text-lg font-bold md:text-xl">About Us</h2>
+        <p className="mt-2 text-[12px] leading-relaxed md:text-sm">
+          Established in 1998, we have built a strong reputation across the
+          region for quality workmanship and tidy, professional service. No job
+          is too big or too small. All work is fully guaranteed.
+        </p>
+
+        <hr className="my-4 border-black/25" />
+        <h2 className="text-lg font-bold md:text-xl">Contact Us</h2>
+        <p className="mt-2 text-[12px] leading-relaxed md:text-sm">
+          For a free quote, call <b>07XXX 123456</b> or email{" "}
+          <Link>info@daveskitchens.co.uk</Link>.
+          <br />
+          11 Example Road, Durham, DH1 5LJ
+        </p>
+        <button className="mt-2 border border-[#999] bg-[#eee] px-3 py-1 text-[12px] md:text-sm">
+          Contact us
+        </button>
+
+        <hr className="my-4 border-black/25" />
+        <p className="pb-2 text-[10px] text-black/45 md:text-[11px]">
+          © 2024 Dave&apos;s Kitchens &amp; Building. All rights reserved.
+        </p>
       </div>
     </div>
   );

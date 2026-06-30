@@ -54,33 +54,39 @@ export const marquee = [
   "GARAGES",
 ];
 
-export const caseStudies = [
+type CaseStudy = {
+  title: string;
+  sector: string;
+  blurb: string;
+  tags: string[];
+  accent: string;
+  url: string | null; // live, embeddable site — null = coming soon
+};
+
+export const caseStudies: CaseStudy[] = [
+  {
+    title: "Stoneford Pools & Landscapes",
+    sector: "Pools · Landscaping · Hertfordshire",
+    blurb: "A premium, conversion-led site for luxury pool and garden projects — built to turn browsers into booked consultations.",
+    tags: ["Web design", "Lead capture", "Local SEO"],
+    accent: "#2ee6c0",
+    url: "https://dordinator.github.io/pools-and-gardens/",
+  },
+  {
+    title: "Stoneford Kitchens & Bathrooms",
+    sector: "Renovations · Hertfordshire & N. London",
+    blurb: "A polished renovation brand with a quote funnel, transformations slider and social proof front and centre.",
+    tags: ["Web design", "Quote funnel", "Reviews"],
+    accent: "#22d3ee",
+    url: "https://dordinator.github.io/kitched-bathroom-demo/",
+  },
   {
     title: "Tillet & Saunders",
-    sector: "Builders & renovations",
-    blurb: "A premium, trust-first site with quote capture for a 25-year London firm.",
-    metric: { value: 312, prefix: "+", suffix: "%", label: "quote requests" },
+    sector: "Builders & renovations · London",
+    blurb: "A premium, trust-first site with quote capture for a 25-year home-building firm.",
     tags: ["Web design", "Lead capture", "SEO"],
-    accent: "#2ee6c0",
-    real: true,
-  },
-  {
-    title: "UniLingo",
-    sector: "Language-learning app",
-    blurb: "A high-converting launch site funnelling students to the iOS & Android apps.",
-    metric: { value: 48, prefix: "", suffix: "k", label: "app installs driven" },
-    tags: ["Launch site", "Motion", "CRO"],
-    accent: "#22d3ee",
-    real: true,
-  },
-  {
-    title: "Apex Plumbing",
-    sector: "Trades · lead generation",
-    blurb: "Missed-call text-back and instant quote forms that never let an enquiry slip.",
-    metric: { value: 2.4, prefix: "", suffix: "x", label: "booked jobs" },
-    tags: ["Website", "Automation", "Reviews"],
     accent: "#8b7bff",
-    real: false,
+    url: null,
   },
 ];
 
@@ -88,15 +94,17 @@ export const transform = {
   eyebrow: "Before / After",
   heading: "From forgettable to unforgettable.",
   sub: "Drag to see the difference a proper build makes.",
+  // The "after" is the real, live kitchens site (rendered non-interactive).
+  afterUrl: "https://dordinator.github.io/kitched-bathroom-demo/",
   before: {
     label: "Before",
-    name: "Old site",
-    points: ["Slow & dated", "No way to capture leads", "Invisible on Google"],
+    name: "Typical template site",
+    points: ["Generic & forgettable", "Few ways to capture leads", "Hard to find on Google"],
   },
   after: {
     label: "After",
-    name: "PARALLAX build",
-    points: ["Fast & immersive", "Lead engine built in", "Ranking & converting"],
+    name: "Built by PARALLAX",
+    points: ["Premium & fast", "Quote funnel built in", "Ranking & converting"],
   },
 };
 
