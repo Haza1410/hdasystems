@@ -78,7 +78,7 @@ export default function ChatbotDemo() {
                   (t) => (
                     <span
                       key={t}
-                      className="rounded-full border border-white/[0.1] bg-white/[0.03] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-muted"
+                      className="rounded-full border border-line bg-ink/[0.03] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-muted"
                     >
                       {t}
                     </span>
@@ -91,16 +91,16 @@ export default function ChatbotDemo() {
           <Reveal delay={0.1}>
             <div className="glass flex h-[520px] flex-col overflow-hidden">
               {/* header */}
-              <div className="flex items-center gap-3 border-b border-white/[0.07] px-5 py-4">
-                <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-accent-teal to-accent-cyan text-[#04110d]">
-                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-base-800 bg-emerald-400" />
+              <div className="flex items-center gap-3 border-b border-line px-5 py-4">
+                <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-accent-terra to-accent-clay text-[#fbf5ec]">
+                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-base-800 bg-accent-sage" />
                   ✦
                 </span>
                 <div>
                   <div className="text-sm font-semibold text-ink">
                     HDA Solutions Assistant
                   </div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-emerald-400">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-accent-sage">
                     Online
                   </div>
                 </div>
@@ -122,8 +122,8 @@ export default function ChatbotDemo() {
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                         m.role === "user"
-                          ? "rounded-br-md bg-accent-teal text-[#04110d]"
-                          : "rounded-bl-md border border-white/[0.08] bg-white/[0.04] text-ink"
+                          ? "rounded-br-md bg-accent-terra text-[#fbf5ec]"
+                          : "rounded-bl-md border border-line bg-ink/[0.03] text-ink"
                       }`}
                     >
                       {m.text}
@@ -139,7 +139,7 @@ export default function ChatbotDemo() {
                       exit={{ opacity: 0 }}
                       className="flex justify-start"
                     >
-                      <div className="flex gap-1 rounded-2xl rounded-bl-md border border-white/[0.08] bg-white/[0.04] px-4 py-3">
+                      <div className="flex gap-1 rounded-2xl rounded-bl-md border border-line bg-ink/[0.03] px-4 py-3">
                         {[0, 1, 2].map((d) => (
                           <span
                             key={d}
@@ -163,7 +163,7 @@ export default function ChatbotDemo() {
                         setUsedSuggestions((u) => [...u, s.q]);
                         send(s.q);
                       }}
-                      className="rounded-full border border-accent-teal/30 bg-accent-teal/[0.06] px-3 py-1.5 text-xs text-accent-teal transition-colors hover:bg-accent-teal/[0.12]"
+                      className="rounded-full border border-accent-terra/30 bg-accent-terra/[0.07] px-3 py-1.5 text-xs text-accent-terra transition-colors hover:bg-accent-terra/[0.13]"
                     >
                       {s.q}
                     </button>
@@ -174,17 +174,17 @@ export default function ChatbotDemo() {
               {/* input */}
               <form
                 onSubmit={onSubmit}
-                className="flex items-center gap-2 border-t border-white/[0.07] p-3"
+                className="flex items-center gap-2 border-t border-line p-3"
               >
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything…"
-                  className="flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2.5 text-sm text-ink placeholder:text-ink-faint outline-none focus:border-accent-teal/50"
+                  className="flex-1 rounded-full border border-line bg-ink/[0.02] px-4 py-2.5 text-sm text-ink placeholder:text-ink-faint outline-none focus:border-accent-terra/50"
                 />
                 <button
                   type="submit"
-                  className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-accent-teal text-[#04110d] transition-transform hover:scale-105"
+                  className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-accent-terra text-[#fbf5ec] transition-transform hover:scale-105"
                   aria-label="Send"
                 >
                   ↑

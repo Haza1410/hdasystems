@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Fraunces } from "next/font/google";
 import { BRAND, BRAND_TAGLINE } from "@/lib/site";
 import Aurora from "@/components/Aurora";
-import MouseGlow from "@/components/MouseGlow";
 import Preloader from "@/components/Preloader";
 import "./globals.css";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: `${BRAND} — ${BRAND_TAGLINE}`,
@@ -19,12 +27,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${fraunces.variable}`}
     >
       <body className="grain relative min-h-screen font-sans antialiased">
         <Preloader />
         <Aurora />
-        <MouseGlow />
         <div className="relative z-10">{children}</div>
       </body>
     </html>

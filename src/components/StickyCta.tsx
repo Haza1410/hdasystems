@@ -30,7 +30,7 @@ export default function StickyCta() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-5 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-white/[0.06] py-2 pl-5 pr-2 backdrop-blur-2xl shadow-[0_20px_60px_-20px_rgba(0,0,0,0.9)]"
+          className="fixed bottom-5 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-line bg-base-800/90 py-2 pl-5 pr-2 backdrop-blur-xl shadow-[0_20px_50px_-20px_rgba(44,38,32,0.45)]"
         >
           <span className="text-sm font-medium text-ink">
             Ready to grow? <span className="text-ink-muted">£299/mo</span>

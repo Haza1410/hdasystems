@@ -2,13 +2,13 @@ import { BRAND, BRAND_TAGLINE, nav } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.07]">
+    <footer className="relative border-t border-line">
       <div className="container-x py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-accent-teal" />
-              <span className="text-[15px] font-semibold tracking-tight text-ink">
+              <span className="h-2.5 w-2.5 rounded-full bg-accent-terra" />
+              <span className="font-serif text-lg font-semibold tracking-tight text-ink">
                 {BRAND}
               </span>
             </div>
@@ -25,7 +25,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="text-sm text-ink-muted transition-colors hover:text-accent-teal"
+                    className="text-sm text-ink-muted transition-colors hover:text-accent-terra"
                   >
                     {item.label}
                   </a>
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/[0.06] pt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <span>
             © {new Date().getFullYear()} {BRAND}
           </span>

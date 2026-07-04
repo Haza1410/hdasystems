@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDA Solutions — Style Demos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0c0d10;
+      color: #f4f4f5;
+      min-height: 100vh;
+      padding: 6vh 6vw;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .25em; text-transform: uppercase; color: #71717a; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -.03em; line-height: 1; margin: 18px 0 16px; }
+    .lede { color: #a1a1aa; font-size: 1.15rem; max-width: 620px; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 48px; }
+    .card {
+      display: block; text-decoration: none; color: inherit;
+      border-radius: 20px; overflow: hidden; border: 1px solid #26262b;
+      background: #141418; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    .card:hover { transform: translateY(-6px); border-color: #3f3f46; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+    .swatch { height: 150px; display: flex; align-items: flex-end; padding: 18px; position: relative; overflow: hidden; }
+    .s1 { background: #f7f6f2; }
+    .s1 .tag { color: #111; }
+    .s1 .bar { background: #2563eb; }
+    .s2 { background: #eafd66; }
+    .s2 .tag { color: #111; }
+    .s3 { background: linear-gradient(135deg, #f3ebe0, #e8d5c4); }
+    .s3 .tag { color: #4a3f37; }
+    .tag { font-weight: 700; font-size: 1.35rem; letter-spacing: -.02em; z-index: 2; }
+    .s2 .tag { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; }
+    .s3 .tag { font-family: 'Fraunces', serif; }
+    .bar { position: absolute; top: 0; left: 0; height: 6px; width: 100%; }
+    .s2 .bar { background: repeating-linear-gradient(90deg, #111 0 18px, transparent 18px 26px); height: 8px; }
+    .s3 .bar { background: #c46a4b; }
+    .meta { padding: 20px; }
+    .meta h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .meta p { color: #a1a1aa; font-size: .92rem; line-height: 1.5; }
+    .go { margin-top: 14px; font-size: .82rem; font-weight: 600; color: #f4f4f5; font-family: 'JetBrains Mono', monospace; }
+    footer { margin-top: 56px; color: #52525b; font-size: .85rem; }
+    /* mini decorative shapes in swatches */
+    .s1 .dot { position: absolute; right: 20px; top: 20px; width: 44px; height: 44px; border: 2px solid #111; border-radius: 50%; }
+    .s2 .box { position: absolute; right: 18px; top: 26px; width: 52px; height: 52px; background: #111; box-shadow: 6px 6px 0 #ff5c39; }
+    .s3 .arc { position: absolute; right: 16px; top: 18px; width: 60px; height: 60px; border-radius: 50%; background: #7d8a72; opacity: .8; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">HDA Solutions · Style exploration</p>
+    <h1>Pick a direction.</h1>
+    <p class="lede">Three quick style demos for the rebuild — same message, three completely different looks. Click any one to browse it full-screen, then tell me which feels right.</p>
+
+    <div class="grid">
+      <a class="card" href="/demos/1-editorial.html">
+        <div class="swatch s1">
+          <span class="bar"></span>
+          <span class="dot"></span>
+          <span class="tag">Editorial Light</span>
+        </div>
+        <div class="meta">
+          <h3>01 · Editorial Light</h3>
+          <p>Clean, confident and minimal. Off-white canvas, huge type, one electric-blue accent, Swiss grid discipline. Feels premium and trustworthy.</p>
+          <div class="go">View demo →</div>
+        </div>
+      </a>
+
+      <a class="card" href="/demos/2-brutalist.html">
+        <div class="swatch s2">
+          <span class="bar"></span>
+          <span class="box"></span>
+          <span class="tag">Bold / Brutalist</span>
+        </div>
+        <div class="meta">
+          <h3>02 · Bold Brutalist</h3>
+          <p>High-energy and unforgettable. Acid colour, thick black borders, hard offset shadows, chunky buttons. Stands out from every competitor.</p>
+          <div class="go">View demo →</div>
+        </div>
+      </a>
+
+      <a class="card" href="/demos/3-boutique.html">
+        <div class="swatch s3">
+          <span class="bar"></span>
+          <span class="arc"></span>
+          <span class="tag">Warm Boutique</span>
+        </div>
+        <div class="meta">
+          <h3>03 · Warm Boutique</h3>
+          <p>Sophisticated and human. Warm cream tones, elegant serif headlines, terracotta &amp; sage accents, soft edges. High-end and calming.</p>
+          <div class="go">View demo →</div>
+        </div>
+      </a>
+    </div>
+
+    <footer>Static preview pages · not linked from the live site · served at <strong>/demos/</strong></footer>
+  </div>
+</body>
+</html>

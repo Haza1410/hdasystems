@@ -14,12 +14,12 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: 7,
-          background: "linear-gradient(135deg, #2ee6c0 0%, #22d3ee 100%)",
-          color: "#06070a",
+          background: "linear-gradient(135deg, #c4623f 0%, #d98c6a 100%)",
+          color: "#fbf5ec",
           fontSize: 20,
           fontWeight: 800,
           letterSpacing: "-0.05em",
-          fontFamily: "sans-serif",
+          fontFamily: "serif",
         }}
       >
         H

@@ -43,8 +43,8 @@ export default function Capabilities() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.items.map((item, i) => (
             <Reveal key={item.title} delay={(i % 3) * 0.08}>
-              <div className="group glass h-full p-7 transition-all duration-300 hover:-translate-y-1 hover:border-white/20">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-accent-teal transition-colors group-hover:border-accent-teal/40">
+              <div className="group glass h-full p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent-terra/30 hover:shadow-[0_30px_50px_-30px_rgba(44,38,32,0.4)]">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-line bg-accent-terra/[0.08] text-accent-terra transition-colors group-hover:border-accent-terra/40">
                   <svg
                     width="22"
                     height="22"

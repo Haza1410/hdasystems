@@ -38,8 +38,8 @@ export default function PricingCalculator() {
         <Reveal delay={0.1}>
           <div className="glass mx-auto grid max-w-5xl gap-0 overflow-hidden md:grid-cols-[1.2fr_1fr]">
             {/* options */}
-            <div className="border-b border-white/[0.07] p-8 md:border-b-0 md:border-r md:p-10">
-              <div className="flex items-center justify-between rounded-2xl border border-accent-teal/30 bg-accent-teal/[0.06] p-5">
+            <div className="border-b border-line p-8 md:border-b-0 md:border-r md:p-10">
+              <div className="flex items-center justify-between rounded-2xl border border-accent-terra/30 bg-accent-terra/[0.07] p-5">
                 <div>
                   <div className="font-semibold text-ink">
                     {calculator.base.label}
@@ -63,16 +63,16 @@ export default function PricingCalculator() {
                       onClick={() => toggle(a.id)}
                       className={`flex w-full items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-all duration-200 ${
                         on
-                          ? "border-accent-teal/50 bg-accent-teal/[0.08]"
-                          : "border-white/[0.08] bg-white/[0.02] hover:border-white/20"
+                          ? "border-accent-terra/50 bg-accent-terra/[0.09]"
+                          : "border-line bg-ink/[0.02] hover:border-ink/20"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span
                           className={`flex h-6 w-6 flex-none items-center justify-center rounded-md border transition-colors ${
                             on
-                              ? "border-accent-teal bg-accent-teal text-[#04110d]"
-                              : "border-white/20 text-transparent"
+                              ? "border-accent-terra bg-accent-terra text-[#fbf5ec]"
+                              : "border-ink/20 text-transparent"
                           }`}
                         >
                           ✓

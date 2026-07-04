@@ -5,27 +5,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Warm boutique surfaces: cream page, lighter elevated cards.
         base: {
-          DEFAULT: "#06070a", // page
-          900: "#08090d",
-          800: "#0c0e14",
-          700: "#12151c",
+          DEFAULT: "#f4ede1", // page
+          900: "#efe6d8", // subtle recessed
+          800: "#fffaf3", // elevated card
+          700: "#e8dcc9",
         },
+        // Warm accents: terracotta primary, soft terracotta, sage, gold.
         accent: {
-          teal: "#2ee6c0",
-          mint: "#19e3b4",
-          cyan: "#22d3ee",
-          violet: "#8b7bff",
-          indigo: "#6366f1",
+          terra: "#c4623f",
+          clay: "#d98c6a",
+          sage: "#7f8a6f",
+          gold: "#c99a5b",
         },
         ink: {
-          DEFAULT: "#f4f7fb", // primary text
-          muted: "#9aa3b2",
-          faint: "#5b6472",
+          DEFAULT: "#2c2620", // espresso primary text
+          muted: "#6b6154",
+          faint: "#9a8f7f",
         },
+        line: "#e4d8c5", // warm hairline
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-fraunces)", "Georgia", "Cambria", "serif"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       keyframes: {

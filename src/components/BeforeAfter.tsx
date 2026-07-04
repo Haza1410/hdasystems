@@ -11,7 +11,7 @@ function Check({ ok }: { ok: boolean }) {
   return (
     <span
       className={`flex h-5 w-5 flex-none items-center justify-center rounded-full text-[11px] ${
-        ok ? "bg-accent-teal text-[#04110d]" : "bg-white/10 text-ink-faint"
+        ok ? "bg-accent-terra text-[#fbf5ec]" : "bg-ink/10 text-ink-faint"
       }`}
     >
       {ok ? "✓" : "✕"}
@@ -102,16 +102,16 @@ export default function BeforeAfter() {
               className="absolute inset-y-0 z-20 flex w-6 cursor-ew-resize touch-none items-center justify-center"
               style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
             >
-              <div className="pointer-events-none h-full w-px bg-white/40" />
-              <div className="pointer-events-none absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/15 text-ink shadow-lg backdrop-blur-md">
+              <div className="pointer-events-none h-full w-px bg-ink/30" />
+              <div className="pointer-events-none absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-base-800/90 text-ink shadow-lg backdrop-blur-md">
                 ⇄
               </div>
             </div>
 
-            <span className="pointer-events-none absolute left-4 top-4 z-10 rounded-full border border-white/10 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-ink-muted backdrop-blur">
+            <span className="pointer-events-none absolute left-4 top-4 z-10 rounded-full border border-line bg-base-800/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-ink-muted backdrop-blur">
               {transform.before.label}
             </span>
-            <span className="pointer-events-none absolute right-4 top-4 z-10 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-accent-teal backdrop-blur">
+            <span className="pointer-events-none absolute right-4 top-4 z-10 rounded-full border border-accent-terra/40 bg-accent-terra/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-accent-terra backdrop-blur">
               {transform.after.label}
             </span>
           </div>
@@ -136,7 +136,7 @@ export default function BeforeAfter() {
               </ul>
             </div>
             <div className="glass-soft p-5">
-              <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent-teal">
+              <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent-terra">
                 {transform.after.name}
               </div>
               <ul className="space-y-2.5">

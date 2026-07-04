@@ -14,7 +14,7 @@ export default function AppleIcon() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#06070a",
+          background: "#f4ede1",
         }}
       >
         <div
@@ -25,12 +25,12 @@ export default function AppleIcon() {
             width: 132,
             height: 132,
             borderRadius: 32,
-            background: "linear-gradient(135deg, #2ee6c0 0%, #22d3ee 100%)",
-            color: "#06070a",
+            background: "linear-gradient(135deg, #c4623f 0%, #d98c6a 100%)",
+            color: "#fbf5ec",
             fontSize: 60,
             fontWeight: 800,
             letterSpacing: "-0.06em",
-            fontFamily: "sans-serif",
+            fontFamily: "serif",
           }}
         >
           HDA

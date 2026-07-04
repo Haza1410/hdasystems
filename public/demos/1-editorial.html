@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDA Solutions — Editorial Light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f7f6f2;
+      --paper-2: #ffffff;
+      --ink: #0e0f11;
+      --ink-2: #4b4d52;
+      --ink-3: #86888e;
+      --line: #e2e0d9;
+      --accent: #2340e6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--ink-3); }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+    a { color: inherit; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(247,246,242,.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; }
+    .brand .m { width: 26px; height: 26px; background: var(--ink); color: var(--paper); border-radius: 7px; display: grid; place-items: center; font-size: .8rem; font-weight: 800; }
+    .nav-links { display: flex; gap: 34px; font-size: .9rem; font-weight: 500; }
+    .nav-links a { text-decoration: none; color: var(--ink-2); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: .9rem; text-decoration: none; padding: 11px 20px; border-radius: 999px; transition: all .2s; }
+    .btn-dark { background: var(--ink); color: var(--paper); }
+    .btn-dark:hover { background: var(--accent); }
+    .btn-line { border: 1px solid var(--ink); color: var(--ink); }
+    .btn-line:hover { background: var(--ink); color: var(--paper); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .hero { padding: 90px 0 70px; border-bottom: 1px solid var(--line); }
+    .hero h1 { font-size: clamp(3rem, 9vw, 7rem); font-weight: 800; letter-spacing: -.045em; line-height: .92; margin: 26px 0; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero .sub { font-size: 1.35rem; color: var(--ink-2); max-width: 640px; line-height: 1.45; }
+    .hero-cta { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+    .hero-cta .btn { padding: 15px 28px; font-size: 1rem; }
+    .rule { display:flex; justify-content: space-between; align-items:center; }
+
+    /* STATS */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+    .stat { padding: 48px 28px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: none; }
+    .stat .v { font-size: 2.6rem; font-weight: 800; letter-spacing: -.03em; }
+    .stat .l { color: var(--ink-3); font-size: .9rem; margin-top: 6px; }
+    @media (max-width: 860px) { .stats { grid-template-columns: repeat(2,1fr); } .stat:nth-child(2){border-right:none;} .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line);} }
+
+    /* SECTION */
+    section { padding: 96px 0; border-bottom: 1px solid var(--line); }
+    .sec-head { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: end; margin-bottom: 56px; }
+    .sec-head h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -.035em; line-height: 1; }
+    .sec-head p { color: var(--ink-2); font-size: 1.1rem; }
+    @media (max-width: 760px){ .sec-head { grid-template-columns: 1fr; } }
+
+    /* CAPABILITIES */
+    .caps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--paper-2); }
+    .cap { padding: 40px 34px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .2s; }
+    .cap:hover { background: #fbfaf7; }
+    .cap:nth-child(3n) { border-right: none; }
+    .cap:nth-child(n+4) { border-bottom: none; }
+    .cap .num { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: .85rem; }
+    .cap h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.02em; margin: 18px 0 10px; }
+    .cap p { color: var(--ink-2); font-size: .98rem; }
+    @media (max-width: 860px){ .caps { grid-template-columns: 1fr; } .cap { border-right: none !important; border-bottom: 1px solid var(--line) !important; } .cap:last-child { border-bottom: none !important; } }
+
+    /* PRICING */
+    .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+    .price-card { border: 1px solid var(--line); border-radius: 18px; padding: 42px; background: var(--paper-2); }
+    .price-card.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .price-card .amt { font-size: 3.6rem; font-weight: 800; letter-spacing: -.04em; }
+    .price-card .amt span { font-size: 1.1rem; font-weight: 500; color: var(--ink-3); }
+    .price-card.dark .amt span { color: #9c9ea6; }
+    .price-card ul { list-style: none; margin: 26px 0; }
+    .price-card li { padding: 12px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: .98rem; }
+    .price-card.dark li { border-top-color: #26262b; color: #d4d4d8; }
+    .addon-note { color: var(--ink-3); font-size: .85rem; margin-top: 20px; }
+    @media (max-width: 760px){ .price-grid { grid-template-columns: 1fr; } }
+
+    /* CTA */
+    .final { text-align: center; padding: 120px 0; }
+    .final h2 { font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 800; letter-spacing: -.04em; line-height: .95; }
+    .final h2 em { font-style: normal; color: var(--accent); }
+    .final p { color: var(--ink-2); font-size: 1.2rem; margin: 24px auto 40px; max-width: 480px; }
+
+    footer { padding: 50px 0; }
+    .foot-in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; color: var(--ink-3); font-size: .88rem; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap nav-in">
+      <div class="brand"><span class="m">H</span> HDA Solutions</div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#demo">Demo</a>
+      </div>
+      <a class="btn btn-dark" href="#">Book a call →</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="rule">
+        <p class="eyebrow">Websites + leads · for your business</p>
+        <p class="eyebrow">Est. flat fee £299/mo</p>
+      </div>
+      <h1>Websites that<br><em>win customers.</em></h1>
+      <p class="sub">We design, build and run high-performing websites — and the lead engine behind them.</p>
+      <div class="hero-cta">
+        <a class="btn btn-dark" href="#">Book a call ↗</a>
+        <a class="btn btn-line" href="#capabilities">Our services</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="v">24/7</div><div class="l">lead capture</div></div>
+      <div class="stat"><div class="v">7 days</div><div class="l">from kick-off to live</div></div>
+      <div class="stat"><div class="v">£299</div><div class="l">per month, everything in</div></div>
+      <div class="stat"><div class="v">0</div><div class="l">missed leads, automated follow-up</div></div>
+    </div>
+  </div>
+
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">What's in the box</p>
+          <h2>A website is just the start.</h2>
+        </div>
+        <p>Your £299/month plan is a complete customer-getting system — the site is one piece of it. Here's everything working for you behind the scenes.</p>
+      </div>
+      <div class="caps">
+        <div class="cap"><div class="num">01</div><h3>Custom website</h3><p>Designed and built for your brand. Fast, accessible, mobile-first.</p></div>
+        <div class="cap"><div class="num">02</div><h3>Lead engine</h3><p>Quote, contact &amp; booking forms with instant email + text follow-up.</p></div>
+        <div class="cap"><div class="num">03</div><h3>Missed-call text-back</h3><p>Every missed call gets an automatic text, so no job slips away.</p></div>
+        <div class="cap"><div class="num">04</div><h3>Review engine</h3><p>A funnel that turns happy customers into 5-star Google reviews.</p></div>
+        <div class="cap"><div class="num">05</div><h3>SEO &amp; AI SEO</h3><p>Found by the right local customers, however they search.</p></div>
+        <div class="cap"><div class="num">06</div><h3>Managed monthly</h3><p>Hosting, updates and optimisation — handled, every month.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Build your plan</p>
+          <h2>Pay for exactly what you need.</h2>
+        </div>
+        <p>Set pricing — £299/month plus any add-ons you choose. 30 day cancellation. No surprises.</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card dark">
+          <p class="eyebrow" style="color:#9c9ea6">Website Growth Plan</p>
+          <div class="amt" style="margin-top:18px">£299 <span>/ mo</span></div>
+          <ul>
+            <li>Custom website <span>✓</span></li>
+            <li>Full lead system <span>✓</span></li>
+            <li>Hosting &amp; maintenance <span>✓</span></li>
+            <li>Reviews + SEO <span>✓</span></li>
+          </ul>
+          <a class="btn btn-dark" style="background:var(--accent);width:100%;justify-content:center" href="#">Book a free call ↗</a>
+        </div>
+        <div class="price-card">
+          <p class="eyebrow">Optional add-ons</p>
+          <ul style="margin-top:18px">
+            <li>AI FAQ assistant / chatbot <span class="mono">+£40/mo</span></li>
+            <li>Google Business Profile <span class="mono">+£150</span></li>
+            <li>Local Service Ads setup <span class="mono">+£500</span></li>
+            <li>Past-customer reactivation <span class="mono">+£250</span></li>
+          </ul>
+          <p class="addon-note">Add only what moves the needle for you. Everything is optional and cancellable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" style="border-bottom:none">
+    <div class="wrap final" style="padding:60px 0 0">
+      <p class="eyebrow">Let's build</p>
+      <h2>Want a website<br>that <em>pulls its weight?</em></h2>
+      <p>Book a free 30-minute call. No pressure, no jargon.</p>
+      <a class="btn btn-dark" style="padding:16px 34px;font-size:1.05rem" href="#">Book a free call ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-in">
+      <div>© 2026 HDA Solutions — Websites engineered to win customers.</div>
+      <div class="mono">Editorial Light · demo 01</div>
+    </div>
+  </footer>
+</body>
+</html>

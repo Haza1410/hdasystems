@@ -44,15 +44,15 @@ function SceneReady() {
 
 function MainBlob() {
   return (
-    <Float speed={1.1} rotationIntensity={0.6} floatIntensity={1.1}>
-      <Icosahedron args={[1.35, 6]} position={[0, 0, 0]}>
+    <Float speed={1.1} rotationIntensity={0.5} floatIntensity={1}>
+      <Icosahedron args={[1.05, 6]} position={[2.4, 0.8, -0.5]}>
         <MeshDistortMaterial
-          color="#0e3d39"
-          roughness={0.06}
-          metalness={0.6}
-          distort={0.38}
-          speed={1.5}
-          envMapIntensity={1.3}
+          color="#c4623f"
+          roughness={0.4}
+          metalness={0.12}
+          distort={0.3}
+          speed={1.3}
+          envMapIntensity={0.85}
         />
       </Icosahedron>
     </Float>
@@ -66,9 +66,9 @@ function Wire() {
   });
   return (
     <Float speed={1.4} rotationIntensity={0.8} floatIntensity={1.2}>
-      <mesh ref={ref} position={[2.1, 1.1, -1]} scale={0.62}>
+      <mesh ref={ref} position={[-2.5, 1.2, -1]} scale={0.55}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshBasicMaterial color="#8b7bff" wireframe transparent opacity={0.5} />
+        <meshBasicMaterial color="#7f8a6f" wireframe transparent opacity={0.55} />
       </mesh>
     </Float>
   );
@@ -79,10 +79,10 @@ function Knot() {
     <Float speed={1.6} rotationIntensity={1} floatIntensity={1.4}>
       <TorusKnot args={[0.32, 0.12, 160, 24]} position={[-2.2, -1.2, -0.5]}>
         <meshStandardMaterial
-          color="#22d3ee"
-          roughness={0.15}
-          metalness={0.9}
-          envMapIntensity={1.4}
+          color="#c99a5b"
+          roughness={0.4}
+          metalness={0.25}
+          envMapIntensity={0.9}
         />
       </TorusKnot>
     </Float>
@@ -91,9 +91,9 @@ function Knot() {
 
 function Pills() {
   const data = [
-    { p: [2.4, -1.4, 0.5], c: "#2ee6c0", s: 0.16 },
-    { p: [-2.5, 1.3, 0.3], c: "#5ef0d0", s: 0.12 },
-    { p: [1.4, 1.8, 0.6], c: "#22d3ee", s: 0.1 },
+    { p: [2.4, -1.4, 0.5], c: "#d98c6a", s: 0.16 },
+    { p: [-2.5, 1.3, 0.3], c: "#e6b98f", s: 0.12 },
+    { p: [1.4, 1.8, 0.6], c: "#7f8a6f", s: 0.1 },
   ] as const;
   return (
     <>
@@ -104,8 +104,9 @@ function Pills() {
             <meshStandardMaterial
               color={d.c}
               emissive={d.c}
-              emissiveIntensity={0.5}
-              roughness={0.3}
+              emissiveIntensity={0.25}
+              roughness={0.5}
+              metalness={0.1}
             />
           </mesh>
         </Float>
@@ -135,17 +136,17 @@ export default function Scene3D() {
       style={{ background: "transparent" }}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 6, 4]} intensity={1.6} color="#ccfff3" />
-        <pointLight position={[-6, -2, 2]} intensity={2.4} color="#22d3ee" />
-        <pointLight position={[4, -4, -2]} intensity={1.8} color="#8b7bff" />
+        <ambientLight intensity={0.85} />
+        <directionalLight position={[5, 6, 4]} intensity={1.5} color="#fff1dd" />
+        <pointLight position={[-6, -2, 2]} intensity={1.8} color="#e6a06a" />
+        <pointLight position={[4, -4, -2]} intensity={1.2} color="#9aa789" />
         <Rig>
           <MainBlob />
           <Wire />
           <Knot />
           <Pills />
         </Rig>
-        <Environment preset="night" />
+        <Environment preset="sunset" />
         <SceneReady />
       </Suspense>
     </Canvas>

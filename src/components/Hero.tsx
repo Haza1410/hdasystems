@@ -16,7 +16,7 @@ export default function Hero() {
     >
       {/* 3D objects behind the copy */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="mask-fade-edges absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-90 md:h-[110%] md:w-[80%]">
+        <div className="mask-fade-edges absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-70 md:h-[115%] md:w-[95%]">
           <Scene3D />
         </div>
       </div>
@@ -28,13 +28,13 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="chip eyebrow !text-[13px] !tracking-[0.22em] px-6 py-2.5 md:!text-sm"
         >
-          <span className="h-2 w-2 rounded-full bg-accent-teal" />
+          <span className="h-2 w-2 rounded-full bg-accent-terra" />
           {hero.eyebrow}
         </motion.span>
 
-        <h1 className="display mt-7 text-[clamp(2.8rem,8vw,6.5rem)] leading-[0.95]">
+        <h1 className="display mt-7 text-[clamp(2.9rem,8vw,6.5rem)] font-medium leading-[1.02]">
           {hero.headline.map((line, i) => (
-            <span key={i} className="block overflow-hidden">
+            <span key={i} className="block overflow-hidden pb-[0.08em]">
               <motion.span
                 initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
@@ -81,7 +81,7 @@ export default function Hero() {
       </div>
 
       <div className="absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 md:block">
-        <span className="block h-12 w-px animate-pulse bg-gradient-to-b from-accent-teal to-transparent" />
+        <span className="block h-12 w-px animate-pulse bg-gradient-to-b from-accent-terra to-transparent" />
       </div>
     </section>
   );

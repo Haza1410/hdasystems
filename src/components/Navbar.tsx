@@ -19,16 +19,16 @@ export default function Navbar() {
       <nav
         className={`flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-2.5 pl-5 transition-all duration-500 md:px-3 md:py-2 md:pl-6 ${
           scrolled
-            ? "border border-white/[0.08] bg-white/[0.04] backdrop-blur-2xl shadow-[0_20px_60px_-30px_rgba(0,0,0,0.9)]"
+            ? "border border-line bg-base-800/80 backdrop-blur-xl shadow-[0_20px_50px_-32px_rgba(44,38,32,0.4)]"
             : "border border-transparent bg-transparent"
         }`}
       >
         <a href="#top" className="flex items-center gap-2.5">
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-teal opacity-60" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-teal" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-terra opacity-60" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-terra" />
           </span>
-          <span className="text-[15px] font-semibold tracking-tight text-ink">
+          <span className="font-serif text-lg font-semibold tracking-tight text-ink">
             {BRAND}
           </span>
         </a>
@@ -38,7 +38,7 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-2 text-sm text-ink-muted transition-colors hover:bg-white/5 hover:text-ink"
+              className="rounded-full px-4 py-2 text-sm text-ink-muted transition-colors hover:bg-ink/5 hover:text-ink"
             >
               {item.label}
             </a>
@@ -57,7 +57,7 @@ export default function Navbar() {
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-ink md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink md:hidden"
           >
             <div className="space-y-1.5">
               <span
@@ -87,7 +87,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-3 text-base text-ink-muted hover:bg-white/5 hover:text-ink"
+              className="rounded-xl px-3 py-3 text-base text-ink-muted hover:bg-ink/5 hover:text-ink"
             >
               {item.label}
             </a>

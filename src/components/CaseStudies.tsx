@@ -35,19 +35,19 @@ function LivePreview({
       initial={false}
       animate={{ height: active ? 600 : 380 }}
       transition={{ duration: 0.55, ease }}
-      className="group/preview relative overflow-hidden rounded-2xl border border-white/10 bg-base-800"
+      className="group/preview relative overflow-hidden rounded-2xl border border-line bg-base-800"
       style={{
         boxShadow: active
-          ? `0 40px 120px -40px ${accent}55, inset 0 1px 0 0 rgba(255,255,255,0.06)`
-          : "inset 0 1px 0 0 rgba(255,255,255,0.06)",
+          ? `0 40px 100px -40px ${accent}66, inset 0 1px 0 0 rgba(255,255,255,0.5)`
+          : "inset 0 1px 0 0 rgba(255,255,255,0.5)",
       }}
     >
       {/* browser chrome */}
-      <div className="relative z-10 flex items-center gap-1.5 border-b border-white/[0.06] bg-base-900/80 px-4 py-2.5 backdrop-blur">
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="ml-3 flex-1 truncate rounded-full bg-white/[0.05] px-3 py-1 font-mono text-[11px] text-ink-faint">
+      <div className="relative z-10 flex items-center gap-1.5 border-b border-line bg-base-900/80 px-4 py-2.5 backdrop-blur">
+        <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
+        <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
+        <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
+        <span className="ml-3 flex-1 truncate rounded-full bg-ink/[0.04] px-3 py-1 font-mono text-[11px] text-ink-faint">
           {hostOf(url)}
         </span>
         <a
@@ -55,7 +55,7 @@ function LivePreview({
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="ml-2 rounded-full border border-white/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-muted transition-colors hover:border-accent-teal/50 hover:text-accent-teal"
+          className="ml-2 rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-muted transition-colors hover:border-accent-terra/50 hover:text-accent-terra"
         >
           Open ↗
         </a>
@@ -77,7 +77,7 @@ function LivePreview({
           active ? "opacity-0" : "opacity-100"
         }`}
       >
-        <span className="flex items-center gap-2 rounded-full border border-white/10 bg-base-900/80 px-4 py-2 text-sm text-ink backdrop-blur-md">
+        <span className="flex items-center gap-2 rounded-full border border-line bg-base-800/90 px-4 py-2 text-sm text-ink backdrop-blur-md">
           <span
             className="h-1.5 w-1.5 rounded-full"
             style={{ background: accent }}
@@ -91,18 +91,18 @@ function LivePreview({
 
 function ComingSoon({ title, accent }: { title: string; accent: string }) {
   return (
-    <div className="relative flex h-[380px] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-base-800">
+    <div className="relative flex h-[380px] items-center justify-center overflow-hidden rounded-2xl border border-line bg-base-800">
       <div
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-70"
         style={{
-          background: `radial-gradient(120% 90% at 80% 0%, ${accent}33, transparent 55%), linear-gradient(160deg,#0c0e14,#070809)`,
+          background: `radial-gradient(120% 90% at 80% 0%, ${accent}2e, transparent 55%), linear-gradient(160deg,#fffaf3,#efe6d8)`,
         }}
       />
       <div className="relative flex flex-col items-center gap-3 text-center">
-        <span className="font-sans text-3xl font-semibold tracking-tight text-white/90 md:text-4xl">
+        <span className="font-serif text-3xl font-semibold tracking-tight text-ink md:text-4xl">
           {title}
         </span>
-        <span className="rounded-full border border-white/15 bg-black/30 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-muted backdrop-blur">
+        <span className="rounded-full border border-line bg-base-900/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-muted backdrop-blur">
           Live preview coming soon
         </span>
       </div>
@@ -126,7 +126,7 @@ function CaseCard({ cs }: { cs: (typeof caseStudies)[number] }) {
             {cs.tags.map((t) => (
               <span
                 key={t}
-                className="rounded-full border border-white/[0.1] bg-white/[0.03] px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-muted"
+                className="rounded-full border border-line bg-ink/[0.03] px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-muted"
               >
                 {t}
               </span>

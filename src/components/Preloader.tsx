@@ -50,9 +50,9 @@ export default function Preloader() {
         ready ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
-      {/* soft aurora glow, on-brand */}
+      {/* soft warm glow, on-brand */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 h-[55vmax] w-[55vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(46,230,192,0.16),rgba(34,211,238,0.07)_45%,transparent_70%)] blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 h-[55vmax] w-[55vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(196,98,63,0.14),rgba(217,140,106,0.07)_45%,transparent_70%)] blur-[120px]" />
       </div>
 
       <motion.div
@@ -63,24 +63,24 @@ export default function Preloader() {
       >
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-teal opacity-60" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-teal" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-terra opacity-60" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-terra" />
           </span>
-          <span className="text-lg font-semibold tracking-tight text-ink">
+          <span className="font-serif text-xl font-semibold tracking-tight text-ink">
             HDA Solutions
           </span>
         </div>
 
         {/* indeterminate progress bar */}
-        <div className="relative h-px w-44 overflow-hidden rounded-full bg-white/10">
+        <div className="relative h-px w-44 overflow-hidden rounded-full bg-ink/10">
           <motion.div
-            className="absolute inset-y-0 w-1/3 rounded-full bg-gradient-to-r from-transparent via-accent-teal to-transparent"
+            className="absolute inset-y-0 w-1/3 rounded-full bg-gradient-to-r from-transparent via-accent-terra to-transparent"
             animate={{ x: ["-110%", "320%"] }}
             transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
-        <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink-faint">
+        <span className="font-sans text-[11px] font-medium uppercase tracking-[0.25em] text-ink-faint">
           Preparing experience
         </span>
       </motion.div>

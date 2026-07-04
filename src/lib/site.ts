@@ -69,7 +69,7 @@ export const caseStudies: CaseStudy[] = [
     sector: "Pools · Landscaping · Hertfordshire",
     blurb: "A premium, conversion-led site for luxury pool and garden projects — built to turn browsers into booked consultations.",
     tags: ["Web design", "Lead capture", "Local SEO"],
-    accent: "#2ee6c0",
+    accent: "#c4623f",
     url: "https://dordinator.github.io/pools-and-gardens/",
   },
   {
@@ -77,7 +77,7 @@ export const caseStudies: CaseStudy[] = [
     sector: "Renovations · Hertfordshire & N. London",
     blurb: "A polished renovation brand with a quote funnel, transformations slider and social proof front and centre.",
     tags: ["Web design", "Quote funnel", "Reviews"],
-    accent: "#22d3ee",
+    accent: "#c99a5b",
     url: "https://dordinator.github.io/kitched-bathroom-demo/",
   },
   {
@@ -85,7 +85,7 @@ export const caseStudies: CaseStudy[] = [
     sector: "Builders & renovations · London",
     blurb: "A premium, trust-first site with quote capture for a 25-year home-building firm.",
     tags: ["Web design", "Lead capture", "SEO"],
-    accent: "#8b7bff",
+    accent: "#7f8a6f",
     url: "https://tillettandsaunders.co.uk",
   },
 ];

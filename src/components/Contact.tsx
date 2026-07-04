@@ -8,7 +8,7 @@ export default function Contact() {
         <Reveal>
           <div className="glass relative overflow-hidden px-8 py-16 text-center md:px-14 md:py-24">
             {/* soft inner glow */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_0%,rgba(46,230,192,0.12),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_0%,rgba(196,98,63,0.12),transparent_60%)]" />
 
             <div className="relative mx-auto flex max-w-2xl flex-col items-center">
               <span className="eyebrow">{cta.eyebrow}</span>
