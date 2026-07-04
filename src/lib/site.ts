@@ -81,12 +81,12 @@ export const caseStudies: CaseStudy[] = [
     url: "https://dordinator.github.io/kitched-bathroom-demo/",
   },
   {
-    title: "Tillet & Saunders",
+    title: "Tillett & Saunders",
     sector: "Builders & renovations · London",
     blurb: "A premium, trust-first site with quote capture for a 25-year home-building firm.",
     tags: ["Web design", "Lead capture", "SEO"],
     accent: "#8b7bff",
-    url: null,
+    url: "https://tillettandsaunders.co.uk",
   },
 ];
 
