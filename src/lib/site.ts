@@ -157,7 +157,7 @@ export const calculator = {
     { id: "lsa", label: "Google Local Service Ads setup", price: 500, type: "oneoff" },
     { id: "reactivation", label: "Past-customer reactivation campaign", price: 250, type: "oneoff" },
   ],
-  note: "Set pricing — £299/month plus any add-ons you choose. 90-day minimum term, then cancel with 1 week's notice.",
+  note: "Set pricing — £299/month plus any add-ons you choose. 90-day minimum contract, with a 1-week cancellation window from your first payment.",
   cta: { label: "Book a free call", href: CAL_URL },
 };
 
@@ -169,7 +169,7 @@ export const chatbot = {
   suggestions: [
     {
       q: "How much does it cost?",
-      a: "It's a set fee of £299/month — website, hosting, lead system, reviews and SEO all included, billed monthly in advance via Stripe. Optional add-ons available. There's a 90-day minimum term, then you can cancel any time with 1 week's notice.",
+      a: "It's a set fee of £299/month — website, hosting, lead system, reviews and SEO all included, billed monthly in advance via Stripe. Optional add-ons available. There's a 90-day minimum contract, with a 1-week cancellation window from your first payment (the first payment isn't refunded).",
     },
     {
       q: "How fast can I go live?",

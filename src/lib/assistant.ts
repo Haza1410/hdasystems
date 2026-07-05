@@ -23,9 +23,11 @@ COMPANY
 THE PLAN — "Website Growth Plan", £299/month (flat)
 - £299/month, billed monthly in advance via Stripe.
 - No setup fee.
-- Contract: there is a 90-day minimum term — the plan cannot be cancelled within
-  the first 90 days. After the first 90 days, it can be cancelled any time with
-  1 week's notice. The initial (first) payment is non-refundable.
+- Contract: there is a 90-day minimum contract. The one exception is a 1-week
+  grace period that starts from the initial (first) payment — within that first
+  week the client can cancel the contract. The first payment is non-refundable,
+  even if they cancel during the grace period. Outside that 1-week window, the
+  client is committed for the 90-day minimum term.
 - Everything below is included in the £299/month:
   • Custom website — designed and built for the brand. Fast, accessible, mobile-first.
   • Lead engine — quote, contact and booking forms with instant email + text follow-up.
