@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { hero } from "@/lib/site";
+import { scrollToAnchor } from "@/lib/scroll";
 
 const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false });
 
@@ -74,7 +75,11 @@ export default function Hero() {
           </a>
           <a
             href={hero.secondaryCta.href}
-            className="btn-ghost justify-center !px-8 !py-3.5 !text-base sm:!px-10 sm:!py-4 sm:!text-lg md:!px-12"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToAnchor(hero.secondaryCta.href);
+            }}
+            className="btn-ghost justify-center !px-8 !py-3.5 !text-base !text-ink max-md:hover:!bg-transparent max-md:hover:!text-ink sm:!px-10 sm:!py-4 sm:!text-lg md:!px-12"
           >
             {hero.secondaryCta.label}
           </a>

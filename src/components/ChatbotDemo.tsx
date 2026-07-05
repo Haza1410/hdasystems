@@ -75,12 +75,19 @@ export default function ChatbotDemo() {
   const [input, setInput] = useState("");
   const [usedSuggestions, setUsedSuggestions] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const bootstrapped = useRef(false);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({
-      top: scrollRef.current.scrollHeight,
-      behavior: "smooth",
-    });
+    const el = scrollRef.current;
+    if (!el) return;
+
+    if (!bootstrapped.current) {
+      bootstrapped.current = true;
+      el.scrollTop = el.scrollHeight;
+      return;
+    }
+
+    el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [messages, typing]);
 
   const send = async (q: string) => {

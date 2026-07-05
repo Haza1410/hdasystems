@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import AnchorLink from "@/components/AnchorLink";
 import { BRAND, CAL_URL, nav } from "@/lib/site";
 
 export default function Navbar() {
@@ -23,7 +24,7 @@ export default function Navbar() {
             : "border border-transparent bg-transparent"
         }`}
       >
-        <a href="#top" className="flex items-center gap-2.5">
+        <AnchorLink href="#top" className="flex items-center gap-2.5">
           <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-terra opacity-60" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-terra" />
@@ -31,17 +32,17 @@ export default function Navbar() {
           <span className="font-serif text-lg font-semibold tracking-tight text-ink">
             {BRAND}
           </span>
-        </a>
+        </AnchorLink>
 
         <div className="hidden items-center gap-1 md:flex">
           {nav.map((item) => (
-            <a
+            <AnchorLink
               key={item.href}
               href={item.href}
               className="rounded-full px-4 py-2 text-sm text-ink-muted transition-colors hover:bg-ink/5 hover:text-ink"
             >
               {item.label}
-            </a>
+            </AnchorLink>
           ))}
         </div>
 
@@ -83,14 +84,14 @@ export default function Navbar() {
       {open && (
         <div className="absolute inset-x-4 top-[72px] glass flex flex-col gap-1 p-4 md:hidden">
           {nav.map((item) => (
-            <a
+            <AnchorLink
               key={item.href}
               href={item.href}
-              onClick={() => setOpen(false)}
+              onNavigate={() => setOpen(false)}
               className="rounded-xl px-3 py-3 text-base text-ink-muted hover:bg-ink/5 hover:text-ink"
             >
               {item.label}
-            </a>
+            </AnchorLink>
           ))}
           <a
             href={CAL_URL}

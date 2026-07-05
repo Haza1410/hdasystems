@@ -1,3 +1,6 @@
+"use client";
+
+import AnchorLink from "@/components/AnchorLink";
 import { BRAND, BRAND_TAGLINE, nav } from "@/lib/site";
 
 export default function Footer() {
@@ -23,12 +26,12 @@ export default function Footer() {
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <a
+                  <AnchorLink
                     href={item.href}
                     className="text-sm text-ink-muted transition-colors hover:text-accent-terra"
                   >
                     {item.label}
-                  </a>
+                  </AnchorLink>
                 </li>
               ))}
             </ul>

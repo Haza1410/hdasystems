@@ -28,8 +28,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable} ${fraunces.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if('scrollRestoration'in history)history.scrollRestoration='manual';var n=performance.getEntriesByType('navigation')[0];if(n&&n.type==='reload'){if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);}else if(!location.hash){scrollTo(0,0);}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="grain relative min-h-screen font-sans antialiased">
         <ScrollRestoration />
         <Preloader />

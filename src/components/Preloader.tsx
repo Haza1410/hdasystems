@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { BRAND } from "@/lib/site";
+import { isPageReload, scrollToTop } from "@/lib/scroll";
 
 const SCENE_READY_EVENT = "hda:scene-ready";
 const MIN_SHOW_MS = 500; // avoid a flicker on fast/cached loads
@@ -38,6 +39,9 @@ export default function Preloader() {
   useEffect(() => {
     if (!ready) return;
     document.documentElement.style.overflow = "";
+    if (isPageReload() || !window.location.hash) {
+      scrollToTop();
+    }
     const t = setTimeout(() => setGone(true), 750); // after fade-out
     return () => clearTimeout(t);
   }, [ready]);
