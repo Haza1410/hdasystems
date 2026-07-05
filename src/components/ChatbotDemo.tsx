@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type ReactNode,
+} from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CAL_URL, chatbot } from "@/lib/site";
 import Reveal from "./Reveal";
@@ -11,7 +17,33 @@ const FALLBACK_REPLY =
   "Sorry — I'm having a little trouble right now. The quickest way to get answers is a free 30-minute call: " +
   CAL_URL;
 
-// Render message text, turning any URL into a tidy clickable link.
+// Parse light Markdown emphasis (**bold**, *italic*) into React nodes. This is a
+// safety net — the model is told to reply in plain text, but if it slips we
+// render real emphasis instead of showing literal asterisks.
+function renderEmphasis(text: string, keyPrefix: string) {
+  const nodes: ReactNode[] = [];
+  const re = /\*\*([^*]+)\*\*|\*([^*]+)\*|__([^_]+)__/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  let i = 0;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) nodes.push(text.slice(last, match.index));
+    if (match[1] !== undefined) {
+      nodes.push(<strong key={`${keyPrefix}-b${i}`}>{match[1]}</strong>);
+    } else if (match[3] !== undefined) {
+      nodes.push(<strong key={`${keyPrefix}-b${i}`}>{match[3]}</strong>);
+    } else {
+      nodes.push(<em key={`${keyPrefix}-i${i}`}>{match[2]}</em>);
+    }
+    last = re.lastIndex;
+    i++;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
+
+// Render message text: turn URLs into tidy clickable links, and render any
+// stray Markdown emphasis as real bold/italic rather than raw asterisks.
 function renderText(text: string) {
   return text.split(/(https?:\/\/[^\s]+)/g).map((part, i) => {
     if (part.startsWith("http")) {
@@ -31,7 +63,7 @@ function renderText(text: string) {
         </a>
       );
     }
-    return <span key={i}>{part}</span>;
+    return <span key={i}>{renderEmphasis(part, `p${i}`)}</span>;
   });
 }
 
