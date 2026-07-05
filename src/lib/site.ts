@@ -124,9 +124,9 @@ export const capabilities = {
       icon: "magnet",
     },
     {
-      title: "Missed-call text-back",
-      desc: "Every missed call gets an automatic text, so no job slips away.",
-      icon: "phone",
+      title: "Website chatbot",
+      desc: "An AI assistant on your site that answers questions and captures leads 24/7.",
+      icon: "chat",
     },
     {
       title: "Review engine",
@@ -181,7 +181,7 @@ export const chatbot = {
     },
     {
       q: "What do I get for £299?",
-      a: "A custom site, hosting & maintenance, lead-capture forms with auto follow-up, missed-call text-back, a 5-star review engine and ongoing SEO.",
+      a: "A custom site, hosting & maintenance, lead-capture forms with auto follow-up, a website chatbot, a 5-star review engine and ongoing SEO.",
     },
   ],
 };

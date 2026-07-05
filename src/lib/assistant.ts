@@ -31,7 +31,7 @@ THE PLAN — "Website Growth Plan", £299/month (flat)
 - Everything below is included in the £299/month:
   • Custom website — designed and built for the brand. Fast, accessible, mobile-first.
   • Lead engine — quote, contact and booking forms with instant email + text follow-up.
-  • Missed-call text-back — every missed call gets an automatic text so no job slips away.
+  • Website chatbot — an AI assistant on your site that answers questions and captures leads 24/7.
   • Review engine — a funnel that turns happy customers into 5-star Google reviews.
   • SEO & AI SEO — found by the right local customers, however they search.
   • Managed monthly — hosting, updates and optimisation handled every month.
