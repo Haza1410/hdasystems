@@ -2,10 +2,38 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { chatbot } from "@/lib/site";
+import { CAL_URL, chatbot } from "@/lib/site";
 import Reveal from "./Reveal";
 
 type Msg = { role: "bot" | "user"; text: string };
+
+const FALLBACK_REPLY =
+  "Sorry — I'm having a little trouble right now. The quickest way to get answers is a free 30-minute call: " +
+  CAL_URL;
+
+// Render message text, turning any URL into a tidy clickable link.
+function renderText(text: string) {
+  return text.split(/(https?:\/\/[^\s]+)/g).map((part, i) => {
+    if (part.startsWith("http")) {
+      const label =
+        part === CAL_URL || part.includes("leadconnectorhq")
+          ? "Book your free call →"
+          : part;
+      return (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium underline underline-offset-2 hover:opacity-80"
+        >
+          {label}
+        </a>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
 
 export default function ChatbotDemo() {
   const [messages, setMessages] = useState<Msg[]>([
@@ -15,7 +43,6 @@ export default function ChatbotDemo() {
   const [input, setInput] = useState("");
   const [usedSuggestions, setUsedSuggestions] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
@@ -24,31 +51,36 @@ export default function ChatbotDemo() {
     });
   }, [messages, typing]);
 
-  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  const send = async (q: string) => {
+    const text = q.trim();
+    if (!text || typing) return;
 
-  const answerFor = (q: string) => {
-    const hit = chatbot.suggestions.find(
-      (s) => s.q.toLowerCase() === q.toLowerCase()
-    );
-    if (hit) return hit.a;
-    const text = q.toLowerCase();
-    if (text.includes("cost") || text.includes("price") || text.includes("£"))
-      return chatbot.suggestions[0].a;
-    if (text.includes("fast") || text.includes("long") || text.includes("time"))
-      return chatbot.suggestions[1].a;
-    if (text.includes("own")) return chatbot.suggestions[2].a;
-    return "Great question — the short answer is yes, we can help. Book a free call and we'll go through it properly.";
-  };
-
-  const send = (q: string) => {
-    if (!q.trim()) return;
-    setMessages((m) => [...m, { role: "user", text: q }]);
+    const history: Msg[] = [...messages, { role: "user", text }];
+    setMessages(history);
     setTyping(true);
-    const t = setTimeout(() => {
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          messages: history.map((m) => ({
+            role: m.role === "user" ? "user" : "assistant",
+            text: m.text,
+          })),
+        }),
+      });
+      const data = await res.json();
+      const reply =
+        typeof data?.reply === "string" && data.reply.trim()
+          ? data.reply
+          : FALLBACK_REPLY;
+      setMessages((m) => [...m, { role: "bot", text: reply }]);
+    } catch {
+      setMessages((m) => [...m, { role: "bot", text: FALLBACK_REPLY }]);
+    } finally {
       setTyping(false);
-      setMessages((m) => [...m, { role: "bot", text: answerFor(q) }]);
-    }, 900);
-    timers.current.push(t);
+    }
   };
 
   const onSubmit = (e: FormEvent) => {
@@ -126,7 +158,7 @@ export default function ChatbotDemo() {
                           : "rounded-bl-md border border-line bg-ink/[0.03] text-ink"
                       }`}
                     >
-                      {m.text}
+                      {renderText(m.text)}
                     </div>
                   </motion.div>
                 ))}
@@ -184,7 +216,8 @@ export default function ChatbotDemo() {
                 />
                 <button
                   type="submit"
-                  className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-accent-terra text-[#fbf5ec] transition-transform hover:scale-105"
+                  disabled={typing || !input.trim()}
+                  className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-accent-terra text-[#fbf5ec] transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
                   aria-label="Send"
                 >
                   ↑

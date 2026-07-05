@@ -14,7 +14,7 @@ export default function Footer() {
             </div>
             <p className="mt-4 text-sm leading-relaxed text-ink-muted">
               {BRAND_TAGLINE}. Websites plus the lead engine behind them — one
-              flat fee, 30 day cancellation.
+              flat fee, 90-day minimum term.
             </p>
           </div>
 

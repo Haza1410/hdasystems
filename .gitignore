@@ -1,9 +1,11 @@
 /node_modules
 /.next
+*.tsbuildinfo
 /out
 /build
 *.pem
 .env*
+!.env.example
 .DS_Store
 npm-debug.log*
 .vercel
