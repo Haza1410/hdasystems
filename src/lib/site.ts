@@ -188,7 +188,7 @@ export const chatbot = {
 
 export const cta = {
   eyebrow: "Let's build",
-  heading: ["Want a website", "that pulls its weight?"],
+  heading: ["Want a website", "that pulls its", "weight?"],
   sub: "Book a free 30-minute call. No pressure, no jargon.",
   primary: { label: "Book a free call", href: CAL_URL },
 };

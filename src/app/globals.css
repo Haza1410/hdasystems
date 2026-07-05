@@ -72,6 +72,13 @@ body {
     @apply bg-clip-text italic text-transparent;
     background-image: linear-gradient(100deg, #c4623f, #d98c6a 60%, #c99a5b);
     background-size: 200% auto;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    /* WebKit trims italic overhangs inside bg-clip:text; stroke expands the paint box. */
+    -webkit-text-stroke: 0.35px transparent;
+    paint-order: stroke fill;
+    padding-inline-end: 0.06em;
+    padding-block-end: 0.06em;
   }
 
   /* Non-italic warm gradient for figures / numbers */
