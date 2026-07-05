@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { usePageReady } from "@/components/PageReadyGate";
 import { hero } from "@/lib/site";
 import { scrollToAnchor } from "@/lib/scroll";
 
@@ -10,6 +11,8 @@ const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false });
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Hero() {
+  const ready = usePageReady();
+
   return (
     <section
       id="top"
@@ -25,7 +28,7 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col items-center">
         <motion.span
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ duration: 0.6 }}
           className="chip eyebrow max-w-[calc(100vw-3rem)] whitespace-nowrap !text-[11px] !tracking-[0.16em] px-4 py-2 sm:!text-[13px] sm:!tracking-[0.22em] sm:px-6 sm:py-2.5 md:!text-sm md:whitespace-normal"
         >
@@ -39,7 +42,7 @@ export default function Hero() {
             <span key={i} className="block overflow-hidden pb-[0.08em]">
               <motion.span
                 initial={{ y: "110%" }}
-                animate={{ y: "0%" }}
+                animate={ready ? { y: "0%" } : { y: "110%" }}
                 transition={{ duration: 0.95, delay: 0.1 + i * 0.12, ease }}
                 className={`inline-block ${i === 1 ? "text-gradient" : "text-ink"}`}
               >
@@ -51,7 +54,7 @@ export default function Hero() {
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
           transition={{ duration: 0.8, delay: 0.5, ease }}
           className="mt-7 max-w-xl text-balance text-lg text-ink-muted"
         >
@@ -60,7 +63,7 @@ export default function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
           transition={{ duration: 0.8, delay: 0.62, ease }}
           className="mt-10 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
         >

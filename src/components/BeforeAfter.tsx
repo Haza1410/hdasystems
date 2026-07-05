@@ -64,7 +64,7 @@ export default function BeforeAfter() {
               <iframe
                 src={transform.afterUrl}
                 title={`Built by ${BRAND} — Ashcombe Kitchens & Bathrooms`}
-                loading="lazy"
+                loading="eager"
                 sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 className="h-full w-full"
                 style={{ border: 0, pointerEvents: dragging ? "none" : "auto" }}
@@ -187,7 +187,7 @@ function LegacySite() {
       <img
         src={src}
         alt="Previous work"
-        loading="lazy"
+        loading="eager"
         className="h-full w-full object-cover"
       />
     </div>

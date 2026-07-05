@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { caseStudies } from "@/lib/site";
-import { useIsClient } from "@/lib/useIsClient";
 import Reveal from "./Reveal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -45,6 +44,7 @@ function ScreenshotPreview({
           alt={`${title} website`}
           fill
           sizes="100vw"
+          loading="eager"
           className="object-cover object-top transition-transform duration-500 group-hover/shot:scale-[1.02]"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/35 via-ink/5 to-transparent" />
@@ -104,20 +104,7 @@ function LivePreview({
   title: string;
   accent: string;
 }) {
-  const isClient = useIsClient();
   const [active, setActive] = useState(false);
-
-  if (!isClient) {
-    return (
-      <div
-        className="group/preview relative min-w-0 h-[380px] overflow-hidden rounded-2xl border border-line bg-base-800"
-        style={{ boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.5)" }}
-      >
-        <PreviewChrome url={url} />
-        <div className="h-[calc(100%-41px)] w-full bg-white" aria-hidden />
-      </div>
-    );
-  }
 
   return (
     <motion.div
@@ -139,7 +126,7 @@ function LivePreview({
       <iframe
         src={url}
         title={title}
-        loading="lazy"
+        loading="eager"
         sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
         className="h-[calc(100%-41px)] w-full bg-white"
         style={{ pointerEvents: active ? "auto" : "none" }}
