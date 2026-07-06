@@ -173,7 +173,7 @@ export default function BeforeAfter() {
 
         <Reveal delay={0.2}>
           <div className="mt-10 flex justify-center">
-            <SeeItInActionLink className="btn-ghost !px-8 !py-3.5 !text-base" />
+            <SeeItInActionLink className="btn-ghost !px-8 !py-3.5 text-[1rem] !text-ink hover:!bg-ink hover:!text-[#f7f2ea]" />
           </div>
         </Reveal>
       </div>

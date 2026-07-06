@@ -34,7 +34,7 @@ export default function Contact() {
               </a>
               <a
                 href={SEE_IT_IN_ACTION_PATH}
-                className="btn-ghost mt-4 w-full justify-center !px-8 !py-3.5 !text-base sm:w-auto sm:!px-10 sm:!py-3.5"
+                className="btn-ghost mt-4 w-full justify-center !px-8 !py-3.5 text-[1rem] !text-ink hover:!bg-ink hover:!text-[#f7f2ea] sm:w-auto sm:!px-10 sm:!py-3.5"
               >
                 See it in action
               </a>

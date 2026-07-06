@@ -73,7 +73,7 @@ export default function Capabilities() {
 
         <Reveal delay={0.1}>
           <div className="mt-12 flex justify-center">
-            <SeeItInActionLink className="btn-ghost !px-8 !py-3.5 !text-base" />
+            <SeeItInActionLink className="btn-ghost !px-8 !py-3.5 text-[1rem] !text-ink hover:!bg-ink hover:!text-[#f7f2ea]" />
           </div>
         </Reveal>
       </div>
