@@ -1,10 +1,18 @@
 import { cta, SEE_IT_IN_ACTION_PATH } from "@/lib/site";
 import Reveal from "./Reveal";
+import SectionBackdrop, {
+  sectionContentClass,
+  sectionShellClass,
+} from "./SectionBackdrop";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32">
-      <div className="container-x">
+    <section
+      id="contact"
+      className={sectionShellClass("py-24 md:py-32")}
+    >
+      <SectionBackdrop variant="contact-glow" />
+      <div className={`container-x ${sectionContentClass()}`}>
         <Reveal>
           <div className="glass relative px-5 py-12 text-center sm:px-8 sm:py-16 md:px-14 md:py-24">
             {/* soft inner glow — clipped separately so heading glyphs aren't trimmed */}

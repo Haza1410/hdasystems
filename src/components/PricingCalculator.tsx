@@ -4,6 +4,10 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { calculator } from "@/lib/site";
 import Reveal from "./Reveal";
+import SectionBackdrop, {
+  sectionContentClass,
+  sectionShellClass,
+} from "./SectionBackdrop";
 
 export default function PricingCalculator() {
   const [selected, setSelected] = useState<Record<string, boolean>>({});
@@ -23,12 +27,16 @@ export default function PricingCalculator() {
   }, [selected]);
 
   return (
-    <section id="pricing" className="relative py-24 md:py-32">
-      <div className="container-x">
+    <section
+      id="pricing"
+      className={sectionShellClass("py-24 md:py-32")}
+    >
+      <SectionBackdrop variant="dark-pricing" />
+      <div className={`container-x ${sectionContentClass()}`}>
         <Reveal>
           <div className="mb-12 text-center">
-            <span className="eyebrow">{calculator.eyebrow}</span>
-            <h2 className="display mt-4 text-[clamp(2.2rem,6vw,4.5rem)] text-ink">
+            <span className="eyebrow text-accent-clay">{calculator.eyebrow}</span>
+            <h2 className="display mt-4 text-[clamp(2.2rem,6vw,4.5rem)] text-[#fbf5ec]">
               Pay for exactly{" "}
               <span className="text-gradient">what you need.</span>
             </h2>

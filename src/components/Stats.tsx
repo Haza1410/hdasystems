@@ -1,11 +1,16 @@
 import { stats } from "@/lib/site";
 import Counter from "./Counter";
 import Reveal from "./Reveal";
+import SectionBackdrop, {
+  sectionContentClass,
+  sectionShellClass,
+} from "./SectionBackdrop";
 
 export default function Stats() {
   return (
-    <section className="relative py-16 md:py-24">
-      <div className="container-x">
+    <section className={sectionShellClass("py-16 md:py-24")}>
+      <SectionBackdrop variant="recessed" />
+      <div className={`container-x ${sectionContentClass()}`}>
         <Reveal>
           <div className="glass grid grid-cols-1 gap-px overflow-hidden rounded-3xl min-[420px]:grid-cols-2 md:grid-cols-4">
             {stats.map((s) => (

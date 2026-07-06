@@ -3,6 +3,10 @@
 import Image from "next/image";
 import { caseStudies } from "@/lib/site";
 import Reveal from "./Reveal";
+import SectionBackdrop, {
+  sectionContentClass,
+  sectionShellClass,
+} from "./SectionBackdrop";
 
 function hostOf(url: string) {
   try {
@@ -141,8 +145,12 @@ function CaseCard({
 
 export default function CaseStudies() {
   return (
-    <section id="gallery" className="relative py-24 md:py-32">
-      <div className="container-x">
+    <section
+      id="gallery"
+      className={sectionShellClass("py-24 md:py-32")}
+    >
+      <SectionBackdrop variant="gallery" />
+      <div className={`container-x ${sectionContentClass()}`}>
         <Reveal>
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>

@@ -10,6 +10,10 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { BRAND, CAL_URL, chatbot } from "@/lib/site";
 import Reveal from "./Reveal";
+import SectionBackdrop, {
+  sectionContentClass,
+  sectionShellClass,
+} from "./SectionBackdrop";
 
 type Msg = { role: "bot" | "user"; text: string };
 
@@ -133,8 +137,12 @@ export default function ChatbotDemo() {
   );
 
   return (
-    <section id="demo" className="relative py-24 md:py-32">
-      <div className="container-x">
+    <section
+      id="demo"
+      className={sectionShellClass("py-24 md:py-32")}
+    >
+      <SectionBackdrop variant="terra-orb" />
+      <div className={`container-x ${sectionContentClass()}`}>
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <div>

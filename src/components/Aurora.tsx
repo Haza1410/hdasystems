@@ -6,9 +6,9 @@ export default function Aurora() {
       <div className="absolute inset-0 bg-[radial-gradient(130%_120%_at_50%_-10%,#faf3e8_0%,#f4ede1_55%,#eee3d3_100%)]" />
 
       {/* drifting warm colour fields, gentle and low-opacity */}
-      <div className="absolute -left-[10%] -top-[15%] h-[60vmax] w-[60vmax] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(196,98,63,0.16),transparent_62%)] blur-[110px] will-change-transform" />
-      <div className="absolute -right-[15%] top-[8%] h-[52vmax] w-[52vmax] animate-aurora-slow rounded-full bg-[radial-gradient(circle,rgba(217,140,106,0.15),transparent_62%)] blur-[120px] will-change-transform" />
-      <div className="absolute bottom-[-22%] left-[18%] h-[54vmax] w-[54vmax] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(127,138,111,0.14),transparent_62%)] blur-[130px] [animation-delay:-8s] will-change-transform" />
+      <div className="absolute -left-[10%] -top-[15%] h-[60vmax] w-[60vmax] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(196,98,63,0.11),transparent_62%)] blur-[110px] will-change-transform" />
+      <div className="absolute -right-[15%] top-[8%] h-[52vmax] w-[52vmax] animate-aurora-slow rounded-full bg-[radial-gradient(circle,rgba(217,140,106,0.1),transparent_62%)] blur-[120px] will-change-transform" />
+      <div className="absolute bottom-[-22%] left-[18%] h-[54vmax] w-[54vmax] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(127,138,111,0.09),transparent_62%)] blur-[130px] [animation-delay:-8s] will-change-transform" />
 
       {/* faint warm grid for subtle structure */}
       <div

@@ -28,6 +28,7 @@ export default function Hero() {
         <div className="mask-fade-edges absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-70 md:h-[115%] md:w-[95%]">
           <Scene3D />
         </div>
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-base-700/70 to-transparent md:h-40" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center">

@@ -1,6 +1,10 @@
 import { capabilities } from "@/lib/site";
 import SeeItInActionLink from "./SeeItInActionLink";
 import Reveal from "./Reveal";
+import SectionBackdrop, {
+  sectionContentClass,
+  sectionShellClass,
+} from "./SectionBackdrop";
 
 const icons: Record<string, React.ReactNode> = {
   layout: (
@@ -30,8 +34,12 @@ const icons: Record<string, React.ReactNode> = {
 
 export default function Capabilities() {
   return (
-    <section id="capabilities" className="relative py-24 md:py-32">
-      <div className="container-x">
+    <section
+      id="capabilities"
+      className={sectionShellClass("py-24 md:py-32")}
+    >
+      <SectionBackdrop variant="sage-orb" />
+      <div className={`container-x ${sectionContentClass()}`}>
         <Reveal>
           <div className="mb-12 max-w-2xl">
             <span className="eyebrow">{capabilities.eyebrow}</span>

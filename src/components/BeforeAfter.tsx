@@ -5,6 +5,10 @@ import { useCallback, useRef, useState } from "react";
 import { BRAND, transform } from "@/lib/site";
 import SeeItInActionLink from "./SeeItInActionLink";
 import Reveal from "./Reveal";
+import SectionBackdrop, {
+  sectionContentClass,
+  sectionShellClass,
+} from "./SectionBackdrop";
 
 const AFTER_SCREENSHOT = "/work/ashcombe-kitchens.jpg";
 
@@ -39,16 +43,21 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section className="relative hidden py-24 md:block md:py-32">
-      <div className="container-x">
+    <section
+      className={sectionShellClass(
+        "hidden py-24 md:block md:py-32"
+      )}
+    >
+      <SectionBackdrop variant="dark-pricing" />
+      <div className={`container-x ${sectionContentClass()}`}>
         <Reveal>
           <div className="mb-10 text-center">
-            <span className="eyebrow">{transform.eyebrow}</span>
-            <h2 className="display mt-4 text-[clamp(2rem,5.5vw,4rem)] text-ink">
+            <span className="eyebrow text-accent-clay">{transform.eyebrow}</span>
+            <h2 className="display mt-4 text-[clamp(2rem,5.5vw,4rem)] text-[#fbf5ec]">
               From forgettable to{" "}
               <span className="text-gradient">unforgettable.</span>
             </h2>
-            <p className="mt-4 text-balance text-ink-muted">
+            <p className="mt-4 text-balance text-[#c8bcab]">
               <span className="hidden md:inline">
                 Drag the handle to compare — and hover either side to scroll it.
               </span>
@@ -173,7 +182,7 @@ export default function BeforeAfter() {
 
         <Reveal delay={0.2}>
           <div className="mt-10 flex justify-center">
-            <SeeItInActionLink className="btn-ghost !px-8 !py-3.5 text-[1rem] !text-ink hover:!bg-ink hover:!text-[#f7f2ea]" />
+            <SeeItInActionLink className="btn-ghost !border-[#fbf5ec]/30 !px-8 !py-3.5 text-[1rem] !text-[#fbf5ec] hover:!border-[#fbf5ec] hover:!bg-[#fbf5ec] hover:!text-ink" />
           </div>
         </Reveal>
       </div>
