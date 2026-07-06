@@ -33,11 +33,13 @@ export default function DemoSection({
         </Reveal>
 
         <div
-          className={`grid items-start gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)] lg:gap-10 ${
-            reverse ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""
+          className={`grid items-start gap-8 lg:gap-10 ${
+            reverse
+              ? "lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.95fr)]"
+              : "lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)]"
           }`}
         >
-          <Reveal delay={0.05}>
+          <Reveal delay={0.05} className={reverse ? "lg:col-start-2" : undefined}>
             <div className="flex flex-col gap-4">
               {stats.map((stat) => (
                 <div key={stat.label} className="glass p-5 sm:p-6">
@@ -52,7 +54,10 @@ export default function DemoSection({
             </div>
           </Reveal>
 
-          <Reveal delay={0.1}>
+          <Reveal
+            delay={0.1}
+            className={reverse ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-2"}
+          >
             <div>
               <p className="mb-4 text-center text-sm font-medium text-ink-muted">
                 See a short demo below
